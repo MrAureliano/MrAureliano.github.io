@@ -1,384 +1,163 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>稀饭日记 - 选择是人的终极自由</title><meta name="author" content="终身学习的稀饭"><meta name="copyright" content="终身学习的稀饭"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="人，具有选择的自由。不管是行善还是作恶，都是人类的自由。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="稀饭日记">
+<meta property="og:url" content="https://mraureliano.github.io/index.html">
+<meta property="og:site_name" content="稀饭日记">
+<meta property="og:description" content="人，具有选择的自由。不管是行善还是作恶，都是人类的自由。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mraureliano.github.io/img/butterfly-icon.png">
+<meta property="article:author" content="终身学习的稀饭">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:image" content="https://mraureliano.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://mraureliano.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
   
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
   
-  
-<meta name="generator" content="Hexo 7.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '稀饭日记',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-10-21 23:09:26'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 休闲</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">稀饭日记</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 休闲</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">稀饭日记</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/10/20/Java/%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB/" title="对象与类">对象与类</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-20T02:03:12.000Z" title="发表于 2024-10-20 10:03:12">2024-10-20</time></span></div><div class="content">使用预定义类对象与对象变量要想使用对象，就必须首先构造对象 ，并指定其初始状态。 对象与对象变量之间存在着一个重要的区别： Date deadline; //deadline doesn&#39;t refer to any object定义了一个对象变量 deadline , 它可以引用Date类型的对象。但是，&#x3D;&#x3D;变量deadline 不是一个对象 ，实际上也没有引用对象&#x3D;&#x3D;。此时 ，不能将任何Date 方法应用于这个变量上。s = deadline.toString(); // not yet  将产生编译错误。必须首先初始化变量 deadline1.用新构造的对象初始化这个变量 ：deadline = new Date();2.让这个变量引用一个已存在的对象 ：deadline = birthday; 现在，这两个变量引用同一个对象 （ 请参见图4 - 4 )。&#x3D;&#x3D;一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。&#x3D;&#x3D; 在 Java...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/10/12/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-10-12T14:29:09.090Z" title="发表于 2024-10-12 22:29:09">2024-10-12</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;  More info: Writing Run server1$ hexo server  More info: Server Generate static files1$ hexo generate  More info: Generating Deploy to remote sites1$ hexo deploy  More info: Deployment </div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">终身学习的稀饭</div><div class="author-info-description">人，具有选择的自由。不管是行善还是作恶，都是人类的自由。</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/20/Java/%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB/" title="对象与类">对象与类</a><time datetime="2024-10-20T02:03:12.000Z" title="发表于 2024-10-20 10:03:12">2024-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/12/hello-world/" title="Hello World">Hello World</a><time datetime="2024-10-12T14:29:09.090Z" title="发表于 2024-10-12 22:29:09">2024-10-12</time></div></div></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
       
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
+    <ul class="card-archive-list">
   
-    <article id="post-Java/对象与类" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/10/20/Java/%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB/" class="article-date">
-  <time class="dt-published" datetime="2024-10-20T02:03:12.000Z" itemprop="datePublished">2024-10-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/10/20/Java/%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB/">对象与类</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="使用预定义类"><a href="#使用预定义类" class="headerlink" title="使用预定义类"></a>使用预定义类</h1><h2 id="对象与对象变量"><a href="#对象与对象变量" class="headerlink" title="对象与对象变量"></a>对象与对象变量</h2><p><strong>要想使用对象，就必须首先构造对象 ，并指定其初始状态。</strong></p>
-<p><strong>对象与对象变量之间存在着一个重要的区别：</strong><br><code> Date deadline; //deadline doesn&#39;t refer to any object</code><br><strong>定义了一个对象变量 deadline , 它可以引用Date类型的对象。<br>但是，&#x3D;&#x3D;变量deadline 不是一个对象 ，实际上也没有引用对象&#x3D;&#x3D;。<br>此时 ，不能将任何Date 方法应用于这个变量上。</strong><br><code>s = deadline.toString(); // not yet </code> 将产生编译错误。<br>必须首先初始化变量 deadline<br>1.用新构造的对象初始化这个变量 ：<code>deadline = new Date();</code><br>2.让这个变量引用一个已存在的对象 ：<code>deadline = birthday; </code><br>现在，这两个变量引用同一个对象 （ 请参见图4 - 4 )。<br><img src="C:\Users\86198\AppData\Roaming\Typora\typora-user-images\image-20241013102306200.png" alt="image-20241013102306200"><br>&#x3D;&#x3D;<strong>一个对象变量并没有实际包含一个对象，而仅仅引用一个对象。</strong>&#x3D;&#x3D; <strong>在 Java 中，任何对象变量的值都是对存储在另外一个地方的一个对象的引用 。 new 操作符的返回值也是一个引用。</strong></p>
-<p>如果将一个方法应用于一个值为 null 的对象上 ， 那么就会产生运行时错误 。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">birthday = <span class="literal">null</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> birthday.toString(); <span class="comment">// runtime error !</span></span><br></pre></td></tr></table></figure>
-<p><strong>局部变量不会自动地初始化为 null，而必须通过调用 new 或将它们设置为 null进行初始化 。</strong></p>
-<p><strong>一个是用来表示时间点的Date 类  另一个是用来表示大家熟悉的日历表示法的LocalDate 类。</strong></p>
-<p><strong>访问器方法(accessor method)</strong>:<strong>只 访 问 对 象 而 不 修 改 对 象 的 方 法</strong>。</p>
-<p><strong>构造器与其他的方法有一个重要的不同。构造器总是伴随着new 操作符的执行被调用，而不能对一个已经存在的对象调用构造器来达到重新设置实例域的目的。</strong><br><code>janes . EmployeeCJames Bond &quot; , 250000 , 1950 , 1 , 1 ) // ERROR</code></p>
-<h3 id="基于类的访问权限"><a href="#基于类的访问权限" class="headerlink" title="基于类的访问权限"></a>基于类的访问权限</h3><p><strong>一个方法可以访问所属类的所有对象的私有数据。</strong></p>
-<h3 id="final实例域"><a href="#final实例域" class="headerlink" title="final实例域"></a>final实例域</h3><p><strong>可以将实例域定义为 final 。 构建对象时必须初始化这样的域。 也就是说 ， 必须确保在每一个构造器执行之后 ， 这个域的值被设置，并且在后面的操作中，不能够再对它进行修改。</strong></p>
-<p><strong>如果类中的每个方法都不会改变其对象 ， 这种类就是不可变(immutable)的类。</strong></p>
-<p><code> evaluations = new StringBuilder ( ) ;</code><br>final 关键字只是表示存储在 evaluations 变量中的对象引用不会再指示其他 StringBuilder对象 。 不过这个对象可以更改 ：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> giveGoldStarO</span><br><span class="line">&#123;</span><br><span class="line">evaluations . append ( LocalDate . now ( ) + <span class="string">&quot; : Gold star ! \ n &quot;</span> ) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="静态域与静态方法"><a href="#静态域与静态方法" class="headerlink" title="静态域与静态方法"></a>静态域与静态方法</h1><h2 id="静态域"><a href="#静态域" class="headerlink" title="静态域"></a>静态域</h2><p>如果将域定义为 static , 每个类中只有一个这样的域。 而每一个对象对于所有的实例域却都有自己的一份拷贝。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">nextld</span> <span class="operator">=</span> <span class="number">1</span> ;</span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> id ;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>现在， 每一个雇员对象都有一个自己的id 域 ， 但这个类的所有实例将共享一个 nextld域。 换句话说 ， 如果有1000 个 Employee 类的对象 ， 则有 1000 个实例域 id。 但是 ， 只有一个静态域 nextld。即使没有一个雇员对象 ， 静态域 nextld 也存在 。</strong></p>
-<p><strong>它属于类 ， 而不属于任何独立的对象。</strong></p>
-<p>在绝大多数的面向对象程序设计语言中 ， 静态域被称为<strong>类域</strong> 。 术语 “static ” 只是沿用了 C ++ 的叫法 ， 并无实际意义。</p>
-<h2 id="静态常量"><a href="#静态常量" class="headerlink" title="静态常量"></a>静态常量</h2><p><strong>静态变量使用得比较少，但静态常量却使用得比较多 。</strong></p>
-<p><strong>例如 ， 在Math 类中定义了一个静态常量 ：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Hath</span></span><br><span class="line">&#123;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">double</span> <span class="variable">PI</span> <span class="operator">=</span> <span class="number">3.14159265358979323846</span> ;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>在程序中， 可以采用Math . PI 的形式获得这个常量。</strong></p>
-<p><strong>如果关键字 static 被省略 ， PI 就变成了 Math 类的一个实例域 。 需要通过 Math 类的对象访问 PI，并且每一个Math 对象都有它自己的一份 PI 拷贝。另一个多次使用的静态常量是 System . out。 它在 System 类中声明 ：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> cl ass System</span><br><span class="line">&#123;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">PrintStream</span> <span class="variable">out</span> <span class="operator">=</span> . . . ;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>由于每个类对象都可以对公有域进行修改 ， 所以 ， 最好不要将域设计为 public。 然而 ，公有常量 （ 即 final 域 ） 却没问题。 因为out 被声明为 final , 所以 不允许再将其他打印流赋给它 ：</p>
-<p><code> System . out = new PrintStrean ( . . .) ; // Error out is final</code></p>
-<p><strong>System 类 ， 有一个 setOut 方法 ， 它可以将 System . out 设置为不同的流。</strong></p>
-<p><strong>这个方法可以修改final 变量的值。 原因在于 ， setOut 方法是一个本地方法，而不是用 Java 语言实现的 。 本地方法可以绕过 Java 语言的存取控制机制 。</strong></p>
-<h2 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h2><p>静态方法是一种不能向对象实施操作的方法。</p>
-<p>例如， Math类的 pow 方法就是一个静态方法。表达式<code>Math.pow(x, a)</code></p>
-<p>在运算时，不使用任何Math对象。换句话说，没有隐式的参数。</p>
-<p>可以认为静态方法是没有this参数的方法(在一个非静态的方法中，this参数表示这个方法的隐式参数)。</p>
-<p>mployee类的静态方法不能访问Id实例域，因为它不能操作对象。但是，静态方法可以访问自身类中的静态域。下面是使用这种静态方法的一个示例:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getNextId</span><span class="params">()</span></span><br><span class="line"><span class="keyword">return</span> nextId; <span class="comment">// returns static field</span></span><br></pre></td></tr></table></figure>
-
-<p>可以通过类名调用这个方法::<code>int n= Employee.getNextId();</code></p>
-<p>这个方法可以省略关键字 static吗?答案是肯定的。但是，需要通过 Employee 类对象的引用调用这个方法。</p>
-<p>&#x3D;&#x3D;注释&#x3D;&#x3D;:可以使用对象调用静态方法。例如，如果harry是一个Employee对象，可以用harry.getNextld()代替Employee.getNextld()。不过，这种方式很容易造成混淆，其原因是 getNextld 方法计算的结果与 harry毫无关系。我们建议使用类名，而不是对象来调用静态方法。</p>
-<p><strong>在下面两种情况下使用静态方法:</strong><br>1.<strong>一个方法不需要访问对象状态，其所需参数都是通过显式参数提供(例如:Math.pow)。</strong><br><strong>2.一个方法只需要访问类的静态域(例如:Employee.getNextld)。</strong></p>
-<h2 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h2><p>静态方法还有另外一种常见的用途。类似LocalDate和NumberFormat的类使用静态工厂方法(factory method)来构造对象。你已经见过工厂方法LocalDate.now和LocalDate.of。<br>NumberFormat类如下使用工厂方法生成不同风格的格式化对象:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">NumberFormat</span> <span class="variable">currencyFormatter</span> <span class="operator">=</span>NumberFormat.getCurrencyInstance():</span><br><span class="line"><span class="type">NumberFormat</span> <span class="variable">percentFormatter</span> <span class="operator">=</span>NumberFormat.getPercentInstance ;</span><br><span class="line"><span class="type">double</span> x=<span class="number">0.1</span>;</span><br><span class="line">System.out.println(currencyFormatter.format(x)); <span class="comment">// prints $0.10</span></span><br><span class="line">System.out.printIn(percentFormatter.format(x));<span class="comment">// prints 10%</span></span><br></pre></td></tr></table></figure>
-
-<p>为什么NumberFormat类不利用构造器完成这些操作呢?这主要有两个原因:<br>无法命名构造器。构造器的名字必须与类名相同。但是，这里希望将得到的货币实例和百分比实例采用不同的名字。<br>当使用构造器时，无法改变所构造的对象类型。而Factory方法将返回一个DecimalFormat类对象，这是NumberFommmat的子类</p>
-<h2 id="main方法"><a href="#main方法" class="headerlink" title="main方法"></a>main方法</h2><p>需要注意，不需要使用对象调用静态方法。例如，不需要构造Math类对象就可以调用Math.pow<br>同理，main方法也是一个静态方法。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Application</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">	&#123;</span><br><span class="line"><span class="comment">// construct objects here</span></span><br><span class="line">...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>main方法不对任何对象进行操作。事实上，在启动程序时还没有任何一个对象。静态的main 方法将执行并创建程序所需要的对象</p>
-<p><strong>提示:每一个类可以有一个 main 方法。这是一个常用于对类进行单元测试的技巧。</strong></p>
-<h1 id="方法参数"><a href="#方法参数" class="headerlink" title="方法参数"></a>方法参数</h1><p>**按值调用(call byvalue)<strong>表示方法接收的是调用者提供的值。而</strong>按引用调用(callbyreference)<strong>表示方法接收的是调用者提供的变量地址。一个方法可以修改传递引用所对应的变量值，而不能修改传递值调用所对应的变量值。</strong>“按……调用”(call by)**是一个标准的计算机科学术语。</p>
-<p>Java程序设计语言总是采用按值调用。也就是说，方法得到的是所有参数值的一个拷贝，特是，方法不能修改传递给它的任何参数变量的内容。</p>
-<p>然而，<strong>方法参数共有两种类型:</strong><br>1.基本数据类型(数字、布尔值)。<br>2.对象引用。</p>
-<p><strong>一个方法不可能修改一个基本数据类型的参数</strong></p>
-<p>实现一个改变对象参数状态的方法并不是一件难事。理由很简单，方法得到的是对象引用的拷贝，对象引用及其他的拷贝同时引用同一个对象。</p>
-<p><strong>实际上，对象引用是按值传递的。</strong></p>
-<p><strong>Java中方法参数的使用情况:</strong><br>一个方法不能修改一个基本数据类型的参数(即数值型或布尔型)。<br>一个方法可以改变一个对象参数的状态<br>一个方法不能让对象参数引用一个新的对象,</p>
-<h1 id="对象构造"><a href="#对象构造" class="headerlink" title="对象构造"></a>对象构造</h1><p>构造器，定义对象的初始状态。Java提供了多种编写构造器的机制。</p>
-<h2 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h2><p>如果多个方法(比如，StringBuilder构造器方法)有相同的名字、不同的参数，便产生了重载。</p>
-<p>编译器必须挑选出具体执行哪个方法，它通过用各个方法给出的参数类型与特定方法调用所使用的值类型进行匹配来挑选出相应的方法。如果编译器找不到匹配的参数，就会产生编译时错误，因为根本不存在匹配，或者没有一个比其他的更好。(这个过程被称为重载解析(overloading resolution)。)</p>
-<p>Java允许重载任何方法，而不只是构造器方法。因此，要完整地描述一个方法，需要指出方法名以及参数类型。这叫做方法的签名(signature)。例如，String类有4个称为 indexOf的公有方法。它们的签名是</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">indexOf(<span class="type">int</span>)</span><br><span class="line">indexOf(<span class="type">int</span>, <span class="type">int</span>)</span><br><span class="line">indexOf(String)</span><br><span class="line">indexOf(String, <span class="type">int</span>)</span><br></pre></td></tr></table></figure>
-
-<p>返回类型不是方法签名的一部分。也就是说，不能有两个名字相同、参数类型也相同却返回不同类型值的方法。</p>
-<h2 id="默认域初始化"><a href="#默认域初始化" class="headerlink" title="默认域初始化"></a>默认域初始化</h2><p>如果在构造器中没有显式地给域赋予初值，那么就会被自动地赋为默认值:数值为0，布尔值为false、对象引用为null。然而，只有缺少程序设计经验的人才会这样做。</p>
-<p>&#x3D;&#x3D;注释&#x3D;&#x3D;:这是域与局部变量的主要不同点。必须明确地初始化方法中的局部变量。但是，如果没有初始化类中的域，将会被自动初始化为默认值(0、false或null)。</p>
-<h2 id="无参数的构造器"><a href="#无参数的构造器" class="headerlink" title="无参数的构造器"></a>无参数的构造器</h2><p>很多类都包含一个无参数的构造函数，对象由无参数构造函数创建时，其状态会设置为适当的默认值。例如，以下是Employee类的无参数构造函数:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">name =<span class="string">&quot;&quot;</span></span><br><span class="line">salary =<span class="number">0</span>;</span><br><span class="line">hireDay = LocalDate.now();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果在编写一个类时没有编写构造器，那么系统就会提供一个无参数构造器。这个构造器将所有的实例域设置为默认值。</p>
-<p>如果类中提供了至少一个构造器，但是没有提供无参数的构造器，则在构造对象时如果没有提供参数就会被视为不合法。</p>
-<p>警告:请记住，仅当类没有提供任何构造器的时候，系统才会提供一个默认的构造器.</p>
-<h2 id="显式域初始化"><a href="#显式域初始化" class="headerlink" title="显式域初始化"></a>显式域初始化</h2><p>通过重载类的构造器方法，可以采用多种形式设置类的实例域的初始状态。确保不管怎样调用构造器，每个实例域都可以被设置为一个有意义的初值，这是一种很好的设计习惯。</p>
-<p>可以在类定义中，直接将一个值赋给任何域。例如:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在执行构造器之前，先执行赋值操作。当一个类的所有构造器都希望把相同的值赋予某个特定的实例域时，这种方式特别有用。</p>
-<p>初始值不一定是常量值。在下面的例子中，可以调用方法对域进行初始化。仔细看一下Employee 类，其中每个雇员有一个id域。可以使用下列方式进行初始化:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> nextId;</span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="variable">id</span> <span class="operator">=</span> assignId();</span><br><span class="line">...</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">assignId</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="type">int</span> r= nextId;</span><br><span class="line">nextId++;</span><br><span class="line"><span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="参数名"><a href="#参数名" class="headerlink" title="参数名"></a>参数名</h2><p>参数变量用同样的名字将实例域屏蔽起来。例如，如果将参数命名为salary，salary将引用这个参数，而不是实例域。但是，可以采用this.salary的形式访问实例域。回想一下，this指示隐式参数，也就是所构造的对象。下面是一个示例:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">(String name, <span class="type">double</span> salary)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">this</span>.name = name;</span><br><span class="line"><span class="built_in">this</span>.salary= salary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="调用另一个构造器"><a href="#调用另一个构造器" class="headerlink" title="调用另一个构造器"></a>调用另一个构造器</h2><p>关键字 this 引用方法的隐式参数。然而，这个关键字还有另外一个含义。<br>如果构造器的第一个语句形如 this(…)，这个构造器将调用同一个类的另一个构造器。<br>下面是一个典型的例子:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">(<span class="type">double</span> s)</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//ca11s Employee(String, double)</span></span><br><span class="line"><span class="built_in">this</span>(<span class="string">&quot;Employee #&quot;</span>+ nextId, s);</span><br><span class="line">nextId++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当调用new Employee(60000)时，Employee(double)构造器将调用Employee(String, double)构造器。<br>采用这种方式使用this关键字非常有用，这样对公共的构造器代码部分只编写一次即可。</p>
-<h2 id="初始化块"><a href="#初始化块" class="headerlink" title="初始化块"></a>初始化块</h2><p>前面已经讲过两种初始化数据域的方法:<br>1.在构造器中设置值<br>2.在声明中赋值<br>实际上，Java还有第三种机制，称为初始化块(initialization block)。在一个类的声明中可以包含多个代码块。只要构造类的对象，这些块就会被执行。例如，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// object initialization block</span></span><br><span class="line">&#123;</span><br><span class="line">id = nextId;</span><br><span class="line">nextId++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>无论使用哪个构造器构造对象，id域都在对象初始化块中被初始化。首先运行初始化块，然后才运行构造器的主体部分。这种机制不是必需的，也不常见。通常会直接将初始化代码放在构造器中。</p>
-<p><strong>调用构造器的具体处理步骤:</strong><br>1)所有数据域被初始化为默认值(0、false或null)。<br>2)按照在类声明中出现的次序，依次执行所有域初始化语句和初始化块。<br>3)如果构造器第一行调用了第二个构造器，则执行第二个构造器主体<br>4)执行这个构造器的主体。</p>
-<p>可以通过提供一个初始化值，或者使用一个静态的初始化块来对静态域进行初始化</p>
-<p>如果对类的静态域进行初始化的代码比较复杂，那么可以使用静态的初始化块。将代码放在一个块中，并标记关键字static</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// static initialization block</span></span><br><span class="line"><span class="keyword">static</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="type">Random</span> <span class="variable">generator</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span> <span class="number">0</span> ；</span><br><span class="line">nextld = generator . nextlnt ( <span class="number">100000</span> ) ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在类第一次加载的时候，将会进行静态域的初始化。与实例域一样，除非将它们显式地<br>设置成其他值，否则默认的初始值是0、false或null。所有的静态初始化语句以及静态初始<br>化块都将依照类定义的顺序执行。</p>
-<h2 id="对象析构与finalize方法"><a href="#对象析构与finalize方法" class="headerlink" title="对象析构与finalize方法"></a>对象析构与finalize方法</h2><p>在析构器中，最常见的操作是回收分配给对象的存储空间。由于Java有自动的垃圾回收器，不需要人工回收内存，所以Java不支持析构器。</p>
-<h1 id="包"><a href="#包" class="headerlink" title="包"></a>包</h1><p>Java 允许使用包 （ package ） 将类组织起来。</p>
-<p>标准的Java类库分布在多个包中，包括java.ang、java.util 和java.net等。标准的 Java<br>包具有一个层次结构。如同硬盘的目录嵌套一样，也可以使用嵌套层次组织包。所有标准的<br>Java包都处于iava和iavax包层次中。使用包的主要原因是确保类名的唯一性。</p>
-<p>从编译器的角度来看，嵌套的包之间没有任何关系。例如，java.util包与java.utiljar包毫无关系。每一个都拥有独立的类集合。</p>
-<h2 id="类的导入"><a href="#类的导入" class="headerlink" title="类的导入"></a>类的导入</h2><p>一个类可以使用所属包中的所有类，以及其他包中的公有类(publicclass)。我们可以采用两种方式访问另一个包中的公有类。</p>
-<p>第一种方式是在每个类名之前添加完整的包名<br>例如:<code>java.time.LocalDate today = java.time.LocalDate.now();</code></p>
-<p>使用import语句。import语句是一种引用包含<br>在包中的类的简明描述。一旦使用了import语句，在使用类时，就不必写出包的全名了。</p>
-<p>可以使用import语句导入一个特定的类或者整个包。</p>
-<p>import语句应该位于源文件的顶部(但位于 package语句的后面)。</p>
-<p>例如，可以使用下面这条语句导人java.util包中所有的类。<br><code>import java.uti].*;</code><br>然后，就可以使用<code>LocalDate today = LocalDate.now();</code></p>
-<p>需要注意的是，只能使用星号**导人一个包，而不能使用importjava.<em>或<br>import java.</em>.*导人以java为前缀的所有包。</p>
-<h2 id="静态导入"><a href="#静态导入" class="headerlink" title="静态导入"></a>静态导入</h2><p>import语句不仅可以导人类，还增加了导人静态方法和静态域的功能<br>例如，如果在源文件的顶部，添加一条指令:<code>import static java.lang.System.*;</code><br>就可以使用System类的静态方法和静态域，而不必加类名前缀:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">out.println(<span class="string">&quot;Goodbye, World!&quot;</span>);<span class="comment">// i.e., System.out</span></span><br><span class="line">exit(<span class="number">0</span>);<span class="comment">//i.e.,System.exit</span></span><br></pre></td></tr></table></figure>
-
-<p>另外，还可以导入特定的方法或域:<br><code>import static java.lang.System.out;</code></p>
-<h2 id="将类放入包中"><a href="#将类放入包中" class="headerlink" title="将类放入包中"></a>将类放入包中</h2><p>要想将一个类放入包中，就必须将包的名字放在源文件的开头，包中定义类的代码之前。例如，程序清单4-7中的文件Employee.iava开头是这样的:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.horstmann.corejava;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Employee</span></span><br><span class="line">&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果没有在源文件中放置package语句，这个源文件中的类就被放置在一个默认包(defaulfpackage)中。默认包是一个没有名字的包。</p>
-<p>将包中的文件放到与完整的包名匹配的子目录中 。 例如 ， com . horstmann . corejava 包<br>中的所有源文件应该被放置在子目录 com &#x2F; horstmann &#x2F; corejava ( Windows 中 com \ horstman\corejava ) 中。 编译器将类文件也放在相同的目录结构中 。</p>
-<p>编译器对文件(带有文件分隔符和扩展名.java的文件)进行操作。而Java解释器加载类(带有.分隔符)。</p>
-<p> 如果包与目录不匹配 ，虚拟机就找不到类。</p>
-<h2 id="包作用域"><a href="#包作用域" class="headerlink" title="包作用域"></a>包作用域</h2><p>标记为public的部分可以被任意的类使用;标记为 private 的部分只能被定义它们的类使用。如果没有指定public或private，这个部分(类、方法或变量)可以被同一个包中的所有方法访问。</p>
-<h1 id="类路径"><a href="#类路径" class="headerlink" title="类路径"></a>类路径</h1><p> 类存储在文件系统的子目录中 。 类的路径必须与包名匹配 。</p>
-<p>为了使类能够被多个程序共享，需要做到下面几点 ：<br>1 ) 把类放到一个目录中 ，</p>
-<p>2 ) 将 JAR 文件放在一个目录中，</p>
-<p>3 ) 设置类路径 （ classpath ) 。 类路径是所有包含类文件的路径的集合 。</p>
-<p>类路径包括 ：<br>• 基目录<br>&#x2F; home &#x2F; user &#x2F; classdii<br>c : \ classes；<br>• 当前目录 ( . ) ；<br>• JAR 文件<br>&#x2F; home &#x2F; user &#x2F; archives &#x2F; archive . jar c : \ archives \ archi ve . j ar 0</p>
-<p>一个源文件只能包含一个公有类 ， 并且文件名必须与公有类匹配。</p>
-<h2 id="设置类路径"><a href="#设置类路径" class="headerlink" title="设置类路径"></a>设置类路径</h2><h1 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h1><p> javadoc ,<br>它可以由源文件生成一个 HTML 文档<br>。</p>
-<h2 id="注释的插入"><a href="#注释的插入" class="headerlink" title="注释的插入"></a>注释的插入</h2><h2 id="类注释"><a href="#类注释" class="headerlink" title="类注释"></a>类注释</h2><p>类注释必须放在 import 语句之后 ， 类定义之前 。</p>
-<h2 id="方法注释"><a href="#方法注释" class="headerlink" title="方法注释"></a>方法注释</h2><p>每一个方法注释必须放在所描述的方法之前。除了通用标记之外 ， 还可以使用下面的标记 ：</p>
-<h4 id="param-变量描述"><a href="#param-变量描述" class="headerlink" title="@ param 变量描述"></a>@ param 变量描述</h4><p>这个标记将对当前方法的 “ param ” （ 参数 ） 部分添加一个条目 。 这个描述可以占据多行 ， 并可以使用 HTML 标记。一个方法的所有 @param 标记必须放在一起。</p>
-<h4 id="return-描述"><a href="#return-描述" class="headerlink" title="@ return 描述"></a>@ return 描述</h4><p>这个标记将对当前方法添加 “ return ” （ 返回 ） 部分。这个描述可以跨越多行 ，并可以<br>使用 HTML 标记。</p>
-<h4 id="throws-类描述"><a href="#throws-类描述" class="headerlink" title="@ throws 类描述"></a>@ throws 类描述</h4><p>这个标记将添加一个注释 ， 用于表示这个方法有可能抛出异常 。</p>
-<h2 id="域注释"><a href="#域注释" class="headerlink" title="域注释"></a>域注释</h2><p>只需要对公有域 （ 通常指的是静态常量 ） 建立文档 。 例如 ,</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*The &quot;Hearts&quot; card suit</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">HEARTS</span> <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="通用注释"><a href="#通用注释" class="headerlink" title="通用注释"></a>通用注释</h2><h2 id="包与概述注释"><a href="#包与概述注释" class="headerlink" title="包与概述注释"></a>包与概述注释</h2><h2 id="注释的抽取"><a href="#注释的抽取" class="headerlink" title="注释的抽取"></a>注释的抽取</h2><h1 id="类设计技巧"><a href="#类设计技巧" class="headerlink" title="类设计技巧"></a>类设计技巧</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/10/20/Java/%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB/" data-id="cm2icotla0001a0ppgf8laktb" data-title="对象与类" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/10/12/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2024-10-12T14:29:09.090Z" itemprop="datePublished">2024-10-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/10/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/10/12/hello-world/" data-id="cm2icotl60000a0pp8d4b4ixc" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2024/10/20/Java/%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB/">对象与类</a>
-          </li>
-        
-          <li>
-            <a href="/2024/10/12/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2024 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/10/">
+          <span class="card-archive-list-date">十月 2024</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">2</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-10-21T15:09:25.998Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By 终身学习的稀饭</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
